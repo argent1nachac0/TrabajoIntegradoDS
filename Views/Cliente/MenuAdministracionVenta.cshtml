@@ -1,0 +1,284 @@
+﻿@model TPDS2.Models.Cliente
+
+@{
+    ViewBag.Title = "MenuAdministracionVenta";
+
+}
+
+
+<section>
+    <div class="py-3 mb-2 bg-light text-dark">
+        <header>
+            <div class="container-fluid">
+                <div class="border-secondary text-success p-3 bg-secondary text-black shadow bg-white rounded">
+                    <div class="row">
+                        <div class="col-10 pt-2">
+                            <h1>
+                                <img src="https://i.ibb.co/1qvWxM9/LOGORECIPLAS.png" height="120px" width="120px" alt="LOGORECIPLAS" border="0" class="text bg-gradient-secondary mediana">Sistema de Gestion Reciplas
+                            </h1>
+                        </div>
+                        <div class="col-2 text-right mt-5 py-5 px-5">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="/Home/Logout" class="btn btn-success btn-lg">
+                                    Salir <i class="fa fa-sign-out"></i>
+                                </a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</section>
+<section>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item inhactive"><a class="text-success" href="#">Pagina principal</a> </li>
+            <li class="breadcrumb-item active" aria-current="page"> <a class="text-secondary">Menú de Ventas</a></li>
+        </ol>
+    </nav>
+</section>
+
+<!--SECCION NOMBRE DE USUARIO-->
+<section class="usuario">
+    <h3 class="px-3">
+        <p class="text-secondary">
+            <img src="http://www.rrhhdigital.com/userfiles/empleados-felices-womenalia.jpg" width="80" height="80" class="img-thumbnail">
+            @HttpContext.Current.User.Identity.Name
+        </p>
+    </h3><hr>
+</section>
+@{
+    if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div class="alert alert-info">@ViewBag.Message</div>
+    }
+}
+<!--SECCION MENU-->
+<section class="p-5 wrapper">
+    <div class="container py">
+        <div class="row">
+            <div class="col-3 text-center ">
+                <button class="btn btn-lg opciones text-wrap py-3" data-toggle="modal" data-target="#newcli-modal">
+                    Registrar Nuevo Cliente
+                </button>
+            </div>
+
+            <div class="col-3 text-center">
+                <button class="btn btn-lg opciones text-wrap py-3" data-toggle="modal" data-target="#newprov-modal">
+                    Registrar Nuevo Proveedor
+                </button>
+            </div>
+            <div class="col-3 ">
+                <button class="btn btn-lg opciones text-wrap" data-toggle="modal" data-target="#regped-modal">
+                    Registrar Nuevo Pedido
+                </button>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-lg opciones py-3 " data-toggle="popover" title="BOTON SIN DESARROLLAR" data-content="Mostraria un formulario a completar en donde, una vez terminado, se podria guardar y/o facturar dicha venta.">
+                    Registrar Venta/Facturar
+                </button>
+            </div>
+        </div>
+        <div class="row pt-5">
+            <div class="col-3">
+                <button class="btn btn-lg opciones text-wrap " data-toggle="modal" data-target="#modcli-modal">
+                    Modificar Cliente registrado
+                </button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-lg opciones text-wrap py-3" data-toggle="modal" data-dismiss="modal" data-target="#modprov-modal">
+                    Modificar Proveedor registrado
+                </button>
+            </div>
+            <div class="col-3">
+                <button class="btn btn-lg opciones  text-wrap py-3" data-toggle="modal" data-target="#modped-modal">
+                    Modificar Pedidos
+                </button>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-lg opciones text-wrap" data-toggle="modal" data-target="#Vtas-modal">
+                    Consultar Ventas Realizadas
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--NUEVO CLIENTE-->
+<section>
+    @using (Html.BeginForm("RegistraCliente", "Cliente", FormMethod.Post, new { @id = "ClienteFormulario" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade" id="newcli-modal" tabindex="-1" role="dialog" aria-labelledby="ML2" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" style="font-size: 30px" id="ML1"><b>Nuevo Cliente</b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text ml-4" id="basic-addon3"><b>Nombre</b></span>
+                                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3"> <b>Apellido</b></span>
+                                    @Html.EditorFor(model => model.apellido, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.apellido, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text ml-4" id="basic-addon3"><b>DNI</b></span>
+                                    @Html.EditorFor(model => model.dni, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.dni, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                            <div class="form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon3"> <b>CUIT/CUIL</b></span>
+                                    @Html.EditorFor(model => model.cuit_cuil, new { htmlAttributes = new { @class = "form-control col-md-5" } })
+                                    @Html.ValidationMessageFor(model => model.cuit_cuil, "", new { @class = "text-danger" })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><b>Domicilio </b></span>
+                                @Html.EditorFor(model => model.domicilio, new { htmlAttributes = new { @class = "form-control col-md-7" } })
+                                @Html.ValidationMessageFor(model => model.domicilio, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text ml-4" id="basic-addon4"><b>Celular</b></span>
+                                    @Html.EditorFor(model => model.celular, new { htmlAttributes = new { @class = "form-control col-md-5" } })
+                                    @Html.ValidationMessageFor(model => model.celular, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class=" form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon4"><b>Telefono fijo</b></span>
+                                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control col-md-5" } })
+                                    @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon4"><b>E-mail</b></span>
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text ml-4" id="basic-addon4"><b>País</b></span>
+                                    @Html.EditorFor(model => model.pais, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.pais, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group input-group mb-3 col-6 ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon4"><b>Provincia</b></span>
+                                    @Html.EditorFor(model => model.provincia, new { htmlAttributes = new { @class = "form-control  col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.provincia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=" form-group input-group mb-3 col-6">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text ml-4" id="basic-addon4"><b>Localidad</b></span>
+                                    @Html.EditorFor(model => model.localidad, new { htmlAttributes = new { @class = "form-control col-md-6" } })
+                                    @Html.ValidationMessageFor(model => model.localidad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group input-group mb-3 col-6 ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon4"><b>Código Postal</b></span>
+                                    @Html.EditorFor(model => model.cp, new { htmlAttributes = new { @class = "form-control col-md-4" } })
+                                    @Html.ValidationMessageFor(model => model.cp, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times-circle"></i> Cancelar</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#infoprob"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoprob" tabindex="-1" role="dialog" aria-labelledby="ml8" aria-hidden="true" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-center" id="ml8"><i class="fa fa-exclamation-triangle text-gray"></i> Confirmación</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>¿Esta seguro de realizar dicha Acción?</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-6">
+                                <button onclick="submitForm()" class="btn btn-lg btn-success Confirmar" data-dismiss="modal"> SI </button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-lg btn-danger" data-dismiss="modal">NO</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</section>
+<section>
+    <footer class="footer fixed-bottom font-small text-center bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="m-0 py-2">Copyright &copy; @DateTime.Now.Year - Desing Pattern - Todos los derechos reservados. </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</section>
+
+@section scripts{
+    <script>
+        function submitForm() {
+            $('#ClienteFormulario').submit();
+
+        }
+    </script>
+}

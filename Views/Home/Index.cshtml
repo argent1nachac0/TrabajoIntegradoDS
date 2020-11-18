@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<body class="py-1" id="logo">
+    <section>
+        <div class="py-3 mb-2 bg-light text-dark">
+            <header>
+                <div class="container-fluid">
+                    <div class="border-secondary text-success p-3 mb-2 bg-secondary text-black shadow bg-white rounded">
+                        <div class="row">
+                            <div class="col">
+                                <h1>
+                                    <img src="https://i.ibb.co/tCvvc1Q/LOGORECIPLAS-PP.png" height="120px" width="120px" alt="LOGORECIPLAS-PP" border="0" class="text bg-gradient-secondary">
+                                    Sistema de Gestion Reciplas
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </section>
+
+    <!--SECCION LOGIN-->
+    <section>
+        <div class="row p-5">
+            <div class="col-8">
+            </div>
+            <div class="container col-4">
+                @{
+                    if (!string.IsNullOrEmpty(ViewBag.Message))
+                    {
+                        <div class="alert alert-danger">@ViewBag.Message</div>
+                    }
+                }
+
+                <form action="/Home/Login" method="post" class="p-3">
+                    <h3 class="text-dark">¡Bienvenido!</h3>
+                    <div class="form-label-group ">
+                        <label for="inputUser">Usuario</label>
+                        <input type="text" id="inputUser" name="nombreUser" class="form-control col-6" placeholder="Ingrese aquí su usuario">
+                    </div>
+                    <div class="form-label-group ">
+                        <label for="inputPassword">Contraseña </label>
+                        <input type="password" id="inputPassword" name="password" value="" class="form-control col-6" placeholder="Ingrese aquí su contraseña">
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
+                    </div>
+                    <div class="text-white text-uppercase p-2">
+                        <button class="btn btn-lg btn-success btn-block btn-login col-6">Ingresar</button>
+                    </div>
+
+                    <div class="text-center col-6">
+                        <a class="small text-success" href="RESTAURAR-CONTRASENIA.html">¿Ha olvidado su contraseña?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section>
+        <footer class="footer fixed-bottom font-small text-center bg-dark text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p class="m-0 py-2">Copyright &copy; @DateTime.Now.Year - Desing Pattern - Todos los derechos reservados. </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</body>

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciplas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            background-repeat: no-repeat;
+            background-color: #F6F8F3;
+            font-family: Gotham, Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        .wrapper {
+            position: relative;
+        }
+
+        .footer {
+            height: 50px;
+            position: fixed;
+        }
+
+        .example .pagination > li > a,
+        .example .pagination > li > span {
+            border: 1px solid #28A744;
+        }
+
+        .pagination > li > a {
+            color: #28A744;
+        }
+
+        .pagination > li.active > a {
+            background: #28A744;
+            color: #fff;
+        }
+
+        .opciones {
+            width: 250px;
+            height: 100px;
+            background: #28A744;
+            color: #fff;
+            font-size: 1.2em;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+        }
+
+            .opciones:hover {
+                animation-name: AnimHover;
+                cursor: pointer;
+                color: #fff
+            }
+
+        @@keyframes AnimHover {
+            0% {
+                transform: scale3d(1,1,1);
+            }
+
+            25% {
+                box-shadow: 0px 0px 5px #000;
+            }
+
+            50% {
+                transform: scale3d(1.1,1.1,1.1);
+                background-color: #2D5D66;
+                box-shadow: 0px 0px 5px #000;
+            }
+
+            75% {
+                box-shadow: 0px 0px 5px #000;
+            }
+        }
+
+        #logo {
+            background-repeat: no-repeat;
+            background-size: 100% 130%;
+            background-image: url(https://image.freepik.com/foto-gratis/mano-sosteniendo-bolsa-saco-basura-reciclar-botellas-plastico-solucion-calentamiento-global_34344-212.jpg);
+        }
+    </style>
+    <body>
+        @RenderBody()
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jquery.validate.unobtrusive")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
